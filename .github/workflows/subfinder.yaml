@@ -1,22 +1,20 @@
-
-name: Subfinder - Subdomain Finder
+name: 🔎 SubFinder - DNS Enumeration
 
 on: issue_comment
 
 jobs:
-  nuclei-scan:
+  subfinder-scan:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v3
       - uses: actions/setup-go@v3
         with:
           go-version: 1.17
-          
-      - name: 🔎 SubFinder - DNS Enumeration
+
+      - name: SubFinder - DNS Enumeration
         uses: projectdiscovery/subfinder-action@main
         with:
           domain: ${{ github.event.comment.body }}
-          flags: "-silent"
 
       - name: GitHub Workflow artifacts
         uses: actions/upload-artifact@v2
