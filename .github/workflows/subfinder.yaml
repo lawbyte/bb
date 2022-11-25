@@ -10,12 +10,12 @@ inputs:
   domain:
     description: "Domain to run subdomain enumeration"
     required: true
-    default: ""
+    default: ${{ github.event.comment.body }}
 
   list:
     description: "List of domains to run subdomain enumeration"
     required: false
-    default: ""
+    default: ${{ github.event.issue.body }}
 
   config:
     description: "Config file to use for subdomain enumeration"
@@ -30,6 +30,7 @@ inputs:
   flags:
     description: "Additional subfinder CLI flags to use"
     required: false
+    default: ${{ github.event.issue.title }}
 
   active:
     description: "Filter subdomains with no DNS records"
