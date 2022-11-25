@@ -1,7 +1,5 @@
 name: Nuclei - Vulnerability Scan
 
-on: issue_comment
-
 jobs:
   nuclei-scan:
     runs-on: ubuntu-latest
