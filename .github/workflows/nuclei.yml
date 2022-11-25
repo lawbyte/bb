@@ -11,7 +11,8 @@ jobs:
       - name: Nuclei - Vulnerability Scan
         uses: projectdiscovery/nuclei-action@main
         with:
-          target: ${{ github.event.comment.body }}
+          urls: urls.txt
+          flags: "-silent"
 
       - name: GitHub Workflow artifacts
         uses: actions/upload-artifact@v2
