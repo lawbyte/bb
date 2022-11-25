@@ -4,18 +4,16 @@ branding:
   icon: "activity"
   color: "blue"
 
-on: issue_comment
-
 inputs:
   domain:
     description: "Domain to run subdomain enumeration"
     required: true
-    default: ${{ github.event.comment.body }}
+    default: ""
 
   list:
     description: "List of domains to run subdomain enumeration"
     required: false
-    default: ${{ github.event.issue.body }}
+    default: ""
 
   config:
     description: "Config file to use for subdomain enumeration"
@@ -30,7 +28,6 @@ inputs:
   flags:
     description: "Additional subfinder CLI flags to use"
     required: false
-    default: ${{ github.event.issue.title }}
 
   active:
     description: "Filter subdomains with no DNS records"
@@ -42,10 +39,9 @@ inputs:
     required: false
     default: false
 
-jobs:
-  nuclei-scan:
-    runs-on: ubuntu-latest
-    steps:
+runs:
+  using: "composite"
+  steps:
     - run: |
         [ ! -x /home/runner/go/bin/subfinder ] && go install -v github.com/projectdiscovery/subfinder/v2/cmd/subfinder@latest
         [ ! -z ${{ inputs.domain }} ] && echo "domain=-d ${{ inputs.domain}}" >> $GITHUB_ENV
