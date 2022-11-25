@@ -1,6 +1,6 @@
 name: Nuclei - Vulnerability Scan
 
-on: [issues]
+on: issue_comment
 
 jobs:
   nuclei-scan:
